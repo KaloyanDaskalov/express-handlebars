@@ -1,0 +1,38 @@
+{
+  "kbju2jwkpb30vl9": {
+    "name": "Cube 3 x 3 Puzzle",
+    "description": "TWIST, TURN, AND ROATE: The Rubik's Cube puzzle toy has many combinations, but only 1 solution. Each step involves a sequence of twists of the cube to move a particular square",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/81dIEAgoytL._AC_SL1500_.jpg",
+    "difficultyLevel": "2"
+  },
+  "kbju9pskpb2yai2": {
+    "name": "Kids cubic",
+    "description": "The Rubik’s Cube was invented in 1974 by Erno Rubik; he wanted a working model to help explain three-dimensional geometry. It took him one month before he was able to solve the Cube for himself. Over 350 million Rubik’s Cubes have been sold worldwide – making it is one of the bestselling toy of all time. The Rubik’s Cube has been tantalizing and enchanting people for over 40 years! ",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/71uPCkM5q%2BL._AC_SL1500_.jpg",
+    "difficultyLevel": "1"
+  },
+  "kbju7c4kpb2qwxv": {
+    "name": "Megaminx",
+    "description": "Drag anywhere in the cube below to rotate it in any direction. Note how all the faces are squares and identical (congruent). Select options to vary the cube's appearance. ",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61HpQqVQ37L._SY355_.jpg",
+    "difficultyLevel": "2"
+  },
+  "kbju848kpb2jbnt": {
+    "name": "Pyraminx",
+    "description": "Drag anywhere in the cube below to rotate it in any direction. Note how all the faces are squares and identical (congruent). Select options to vary the cube's appearance. ",
+    "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/61izOzq%2BBAL._SY355_.jpg",
+    "difficultyLevel": "6"
+  },
+  "kbju4f8kpb2cx53": {
+    "name": "Gan356 Update",
+    "description": "A box-shaped solid object that has six identical square faces.",
+    "imageUrl": "https://ae01.alicdn.com/kf/HTB1CSddXRxRMKJjy0Fdq6yifFXa6/Gan-356-Air-SM-3x3-Black-Magic-cube-GAN-Air-SM-Magnetic-3x3x3-Speed-cube-gans.jpg",
+    "difficultyLevel": "5"
+  },
+  "kbju168kpa74zqp": {
+    "name": "Eco-Dark",
+    "description": "In geometry, a cube is a three-dimensional solid object bounded by six square faces, facets or sides, with three meeting at each vertex. The cube is the only regular hexahedron and is one of the five Platonic solids. It has 6 faces, 12 edges, and 8 vertices.",
+    "imageUrl": "https://thingsidesire.com/wp-content/uploads/2018/06/Eco-Dark-Rubik%E2%80%99s-Cube2.jpg",
+    "difficultyLevel": "5"
+  }
+}
