@@ -5,8 +5,10 @@
     "version": "1.0.0",
     "main": "pathToMain",
     "nodemonConfig": {
-        "ignore": ["config/*.json"]
-      },
+        "ignore": [
+            "config/*.json"
+        ]
+    },
     "scripts": {
         "start": "set NODE_ENV=development&& nodemon ./index.js"
     },
