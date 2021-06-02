@@ -1,19 +1,22 @@
 const route = require('express').Router();
-const db = require('../models/query');
+const Cube = require('../models/cubeModel');
 
 route.get('/', async (req, res) => {
-	const search = req.query.search || '';
-	const from = Number(req.query.from) || 1;
-	const to = Number(req.query.to) || 6;
 
-	const allCubs = await db.getAll();
-	const cubs = Object.keys(allCubs)
-		.map(key => {
-			return { id: key, ...allCubs[key] }
-		})
-		.filter(cube => cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) && Number(cube.difficultyLevel) >= from && Number(cube.difficultyLevel) <= to);
+	const dbCubs = await Cube.find().lean();
 
-	res.render('index', { cubs });
+	if (req.query.search || req.query.search === '') {
+		const search = req.query.search || '';
+		const from = Number(req.query.from) || 1;
+		const to = Number(req.query.to) || 6;
+
+		const cubs = dbCubs.filter(cube => cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) && Number(cube.difficultyLevel) >= from && Number(cube.difficultyLevel) <= to);
+
+		res.render('index', { cubs });
+	} else {
+		res.render('index', { cubs: dbCubs });
+	}
+
 });
 
 
