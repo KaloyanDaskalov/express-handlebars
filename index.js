@@ -3,7 +3,7 @@ const router = require('./controllers/routes');
 const env = process.env.NODE_ENV || 'development';
 const config = require('./config/config')[env];
 
-require('./config/mongoose').dbConnection(config.DB_URI);
+require('./config/mongoose')(config.DB_URI);
 
 const app = express();
 

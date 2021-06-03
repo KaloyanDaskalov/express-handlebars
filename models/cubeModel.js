@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const cubeSchema = new mongoose.Schema({
+const cubeSchema = new Schema({
     name: String,
     description: String,
     imageUrl: String,
     difficultyLevel: Number
 });
 
-module.exports = mongoose.model('Cube', cubeSchema);
+module.exports = model('Cube', cubeSchema);

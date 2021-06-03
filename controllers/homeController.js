@@ -3,20 +3,21 @@ const Cube = require('../models/cubeModel');
 
 route.get('/', async (req, res) => {
 
-	const dbCubs = await Cube.find().lean();
+	const searchParams = {};
 
 	if (req.query.search || req.query.search === '') {
-		const search = req.query.search || '';
-		const from = Number(req.query.from) || 1;
-		const to = Number(req.query.to) || 6;
-
-		const cubs = dbCubs.filter(cube => cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()) && Number(cube.difficultyLevel) >= from && Number(cube.difficultyLevel) <= to);
-
-		res.render('index', { cubs });
-	} else {
-		res.render('index', { cubs: dbCubs });
+		searchParams.name = {
+			$regex: req.query.search || '',
+			$options: 'i'
+		};
+		searchParams.difficultyLevel = {
+			$gte: Number(req.query.from) || 1,
+			$lte: Number(req.query.to) || 6
+		};
 	}
 
+	const cubs = await Cube.find(searchParams).lean();
+	res.render('index', { cubs });
 });
 
 
