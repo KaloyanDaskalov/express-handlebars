@@ -1,12 +1,12 @@
 const route = require('express').Router();
-const db = require('../models/query');
 
 route.get('/', (req, res) => {
 	res.render('create');
 });
 
-route.post('/', async (req, res) => {
-	await db.add(req.body);
+route.post('/add-cube', async (req, res) => {
+	const cube = await req.store.addCube(req.body);
+	console.log(cube);
 	res.redirect('/');
 });
 

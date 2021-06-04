@@ -1,5 +1,4 @@
 const route = require('express').Router();
-const Cube = require('../models/cubeModel');
 
 route.get('/', async (req, res) => {
 
@@ -16,7 +15,7 @@ route.get('/', async (req, res) => {
 		};
 	}
 
-	const cubs = await Cube.find(searchParams).lean();
+	const cubs = await req.store.getCubes(searchParams);
 	res.render('index', { cubs });
 });
 

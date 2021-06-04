@@ -1,11 +1,8 @@
 const route = require('express').Router();
-const db = require('../models/query');
 
 route.get('/:id', async (req, res) => {
-	const id = req.params.id;
-	const cub = await db.getOne(id);
-
-	res.render('details', { title: 'Cub Details', id, ...cub });
+	const cube = await req.store.getCube(req.params.id);
+	res.render('details', { title: 'Cub Details', ...cube });
 });
 
 module.exports = route;

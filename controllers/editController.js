@@ -1,18 +1,17 @@
 const route = require('express').Router();
-const db = require('../models/query');
 
 route.get('/:id', async (req, res) => {
-	const id = req.params.id;
-	const cub = await db.getOne(id);
-
-	res.render('edit', { title: 'Edit Cube', id, ...cub });
+	const cube = await req.store.getCube(req.params.id);
+	res.render('edit', { title: 'Edit Cube', ...cube });
 });
 
-route.post('/:id', async (req, res) => {
+route.post('/:id/update', async (req, res) => {
 	const id = req.params.id;
-	const cubs = await db.getAll(id);
-	cubs[id] = req.body;
-	await db.save(cubs);
+	try {
+		await req.store.updateCube(id, req.body);
+	} catch (err) {
+		console.error(err);
+	};
 
 	res.redirect('/details/' + id);
 });
