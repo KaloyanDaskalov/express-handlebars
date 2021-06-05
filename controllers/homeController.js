@@ -19,10 +19,5 @@ route.get('/', async (req, res) => {
 	res.render('index', { cubs });
 });
 
-
-route.get('/about', (req, res) => {
-	res.render('about', { title: 'About Page' });
-});
-
 module.exports = route;
 
