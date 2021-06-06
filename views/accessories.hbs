@@ -1,0 +1,12 @@
+<h1>Accessories</h1>
+<form action="/accessories" method="GET">
+    <input type="text" class="search" name="search" placeholder="Search...">
+    <input type="submit" value="search">
+</form>
+</br>
+</br>
+{{#each accessories}}
+{{>accessory}}
+{{else}}
+<h1>No Accessories on Database</h1>
+{{/each}}

@@ -1,12 +1,12 @@
 const route = require('express').Router();
 
-route.get('/', async (req, res) => {
+route.get('/:var(cubes)?', async (req, res) => {
 
 	const searchParams = {};
 
 	if (req.query.search || req.query.search === '') {
 		searchParams.name = {
-			$regex: req.query.search || '',
+			$regex: req.query.search,
 			$options: 'i'
 		};
 		searchParams.difficultyLevel = {
@@ -17,6 +17,21 @@ route.get('/', async (req, res) => {
 
 	const cubs = await req.store.getCubes(searchParams);
 	res.render('index', { cubs });
+});
+
+route.get('/accessories', async (req, res) => {
+
+	const searchParams = {};
+
+	if (req.query.search || req.query.search === '') {
+		searchParams.name = {
+			$regex: req.query.search,
+			$options: 'i'
+		};
+	}
+
+	const accessories = await req.store.getAccessories(searchParams);
+	res.render('accessories', { accessories });
 });
 
 module.exports = route;
