@@ -10,4 +10,14 @@ route.get('/:id', async (req, res) => {
 	}
 });
 
+route.get('/accessory/:id', async (req, res) => {
+	try {
+		const accessory = await req.store.getAccessory(req.params.id);
+		res.render('details-accessory', { title: 'Accessory Details', ...accessory });
+	} catch (err) {
+		console.error(err);
+		res.redirect('/');
+	}
+});
+
 module.exports = route;

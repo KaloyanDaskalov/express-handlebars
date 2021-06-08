@@ -1,0 +1,16 @@
+<h1>{{name}}</h1>
+<img class="cube" src="{{imageUrl}}" />
+<div class="details">
+  <p><span>Description:</span>{{description}}</p>
+  <div class="flexBtn">
+    <a class="btn" href="/accessories">Back</a>
+    <a class="btn" href="/edit/accessory/{{_id}}">Edit Accessory</a>
+    <a class="btn" href="/delete/{{_id}}">Delete</a>
+  </div>
+</div>
+<h2>Cubes</h2>
+{{#each cubes}}
+{{>cube}}
+{{else}}
+<h1>No Attached Cubs</h1>
+{{/each}}

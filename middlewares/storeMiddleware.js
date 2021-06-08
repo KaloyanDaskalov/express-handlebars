@@ -34,6 +34,10 @@ async function addAccessory(accessory) {
     return newAccessory.save();
 }
 
+async function getAccessory(id = '') {
+    return Accessory.findById(id).populate('cubes').lean();
+}
+
 async function getAccessories(options = {}) {
     return Accessory.find(options).lean();
 }
@@ -48,17 +52,28 @@ async function attachAccessory(cubeId, accessoryId) {
 
     try {
         cube.accessories.push(accessory);
-    } catch (error) {
+    } catch {
         cube.accessories = [accessory];
     }
 
     try {
         accessory.cubes.push(cube);
-    } catch (error) {
+    } catch {
         accessory.cubes = [cube];
     }
 
     return Promise.all([cube.save(), accessory.save()]);
+}
+
+async function updateAccessory(id = '', accessory = {}) {
+    const existing = await Accessory.findById(id);
+
+    if (!existing) {
+        throw new ReferenceError('No such ID in database');
+    }
+
+    Object.assign(existing, accessory);
+    return existing.save();
 }
 
 module.exports = (req, res, next) => {
@@ -68,9 +83,11 @@ module.exports = (req, res, next) => {
         addCube,
         updateCube,
         deleteCube,
+        getAccessory,
         getAccessories,
         addAccessory,
-        attachAccessory
+        attachAccessory,
+        updateAccessory
     };
     next();
 };
