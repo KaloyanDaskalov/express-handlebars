@@ -9,15 +9,14 @@ route.get('/:id', async (req, res) => {
     }
 });
 
-route.post('/:id', (req, res) => {
-    console.log(req.params.id);
+route.post('/:id', async (req, res) => {
+    // TO DO check for creator 
+    try {
+        await req.store.deleteCube(req.params.id);
+    } catch (err) {
+        console.error(err);
+    }
     res.redirect('/');
-    // try {
-    //     await req.store.deleteCube(req.params.id);
-    // } catch (err) {
-    //     console.error(err);
-    // }
-    // res.redirect('/');
 });
 
 module.exports = route;

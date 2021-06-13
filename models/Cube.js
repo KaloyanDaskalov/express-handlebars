@@ -24,7 +24,12 @@ const cubeSchema = new Schema({
     accessories: [{
         type: Schema.Types.ObjectId,
         ref: 'Accessory'
-    }]
+    }],
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
 });
 
 module.exports = model('Cube', cubeSchema);

@@ -18,7 +18,13 @@ const accessorySchema = new Schema({
 	cubes: [{
 		type: Schema.Types.ObjectId,
 		ref: 'Cube'
-	}]
+	}],
+	creator: {
+		type: Schema.Types.ObjectId,
+		ref: 'User',
+		required: true
+
+	}
 });
 
 module.exports = model('Accessory', accessorySchema);
