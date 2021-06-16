@@ -34,5 +34,10 @@ route.get('/accessories', async (req, res) => {
 	res.render('accessories', { accessories });
 });
 
+
+route.get('/logout', (req, res) => {
+	res.clearCookie('USER_SESSION').redirect('/cubes');
+});
+
 module.exports = route;
 

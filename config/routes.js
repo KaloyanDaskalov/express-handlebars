@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { isAuth, isGuest } = require('../middlewares/guardMiddleware');
 
 const homeController = require('../controllers/homeController');
 const aboutController = require('../controllers/aboutController');
@@ -11,11 +12,11 @@ const authController = require('../controllers/authController');
 
 router.use('/', homeController);
 router.use('/about', aboutController);
-router.use('/create', createController);
-router.use('/delete', deleteController);
+router.use('/create', isAuth(), createController);
+router.use('/delete', isAuth(), deleteController);
 router.use('/details', detailsController);
-router.use('/edit', editController);
-router.use('/auth', authController);
+router.use('/edit', isAuth(), editController);
+router.use('/auth', isGuest(), authController);
 router.use('*', notFoundController);
 
 module.exports = router;

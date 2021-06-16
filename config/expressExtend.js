@@ -1,7 +1,7 @@
 const hbs = require('express-handlebars');
+const cookieParser = require('cookie-parser');
 const authMiddleware = require('../middlewares/authMiddleware');
 const storeMiddleware = require('../middlewares/storeMiddleware');
-const cookieParser = require('cookie-parser');
 
 module.exports = function (app, static, urlencoded) {
 

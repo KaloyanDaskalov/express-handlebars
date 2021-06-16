@@ -6,7 +6,7 @@ route.get('/cube', (req, res) => {
 
 route.post('/add-cube', async (req, res) => {
 	try {
-		await req.store.addCube(req.body);
+		await req.store.addCube({ ...req.body, creator: req.user });
 	} catch (err) {
 		console.error(err)
 	}

@@ -1,19 +1,22 @@
-const { register, login } = require('../services/auth');
-const env = process.env.NODE_ENV || 'development';
-const { COOKIE_NAME, SECRET } = require('../config/config')[env];
+const { register, login, jwtSession } = require('../services/auth');
+const errorCodes = require('../helpers/errorCodes')
 
-module.exports = () => (req, res, next) => {
-	const token = req.cookies[COOKIE_NAME];
-	if (token) {
-		req.user = token;
-		res.locals.user = token;
+module.exports = () => async (req, res, next) => {
+
+	try {
+		const usr = await jwtSession(req.cookies);
+
+		if (usr) {
+			req.user = usr;
+			res.locals.user = true;
+		}
+	} catch (err) {
+		res.locals.error = errorCodes.get(err);
 	}
-
 
 	req.auth = {
 		register,
 		login
 	};
 	next();
-
 }

@@ -1,8 +1,7 @@
-const route = require('express').Router();
-const formData = require('../helpers/getFormData');
-const errorCodes = require('../helpers/errorCodes');
 const env = process.env.NODE_ENV || 'development';
-const { COOKIE_NAME, SECRET } = require('../config/config')[env];
+const { COOKIE_NAME } = require('../config/config')[env];
+const route = require('express').Router();
+const errorCodes = require('../helpers/errorCodes');
 
 route.get('/login', (req, res) => {
 	res.render('login');
@@ -14,10 +13,8 @@ route.get('/register', (req, res) => {
 
 route.post('/login', async (req, res) => {
 	try {
-		const userData = formData('login', req.body);
-		const usr = await req.auth.login(userData);
-		// req.user = usr;
-		res.cookie(COOKIE_NAME, SECRET, { httpOnly: true }).redirect('/cubes');
+		const usr = await req.auth.login(req.body);
+		res.cookie(COOKIE_NAME, usr.jwtSign(), { httpOnly: true }).redirect('/cubes');
 	} catch (err) {
 		res.locals.error = errorCodes.get(err);
 		res.render('login');
@@ -26,11 +23,12 @@ route.post('/login', async (req, res) => {
 
 route.post('/register', async (req, res) => {
 	try {
-		const userData = formData('register', req.body);
-		await req.auth.register(userData);
-		res.redirect('/cubes');
+		const usr = await req.auth.register(req.body);
+		res.cookie(COOKIE_NAME, usr.username, { httpOnly: true }).redirect('/cubes');
 	} catch (err) {
-		res.locals.error = errorCodes.get(err);
+		console.log(err, err.message);
+		// res.locals.error = errorCodes.get(err);
+		res.locals.error = err.message;
 		res.render('register');
 	}
 });

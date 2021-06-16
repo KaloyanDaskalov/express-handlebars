@@ -5,9 +5,11 @@
   <p><span>Difficulty level:</span> {{difficultyLevel}}</p>
   <div class="flexBtn">
     <a class="btn" href="/cubes">Back</a>
+    {{#if owner}}
     <a class="btn" href="/edit/{{_id}}">Edit Cube</a>
     <a class="btn" href="/create/attach-accessory/{{_id}}">Accessories</a>
     <a class="btn" href="/delete/{{_id}}">Delete</a>
+    {{/if}}
   </div>
 </div>
 <h2>Accessories</h2>
